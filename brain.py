@@ -8,6 +8,7 @@ class SavePass:
     NUMBERS_LIST = [str(num) for num in range(0,10)]
     SYMBOLS_LIST = ['!','@','#','$','%','&','*','(',')']
     
+    
         
 
     def savepassword(self,web,user,pasw):
@@ -20,6 +21,23 @@ class SavePass:
             pass_texts = file.readlines()
         text = "".join(pass_texts)
         return text
+    
+    def get_last_email(self):
+        index_list = []
+        password_text = self.readpassword()
+        password_text = password_text.split('\n')
+        if len(password_text) > 1:
+            for i in range(len(password_text[-2])):
+                if password_text[-2][i] == '|':
+                    index_list.append(i)
+            index_list[0] = index_list[0]+3
+            index_list[1] = index_list[1] -2
+            email_address = password_text[-2][index_list[0]:index_list[1]]
+            return email_address
+        else: 
+            return False
+
+        
     
     def generate_pass_complex(self):
         final_password = []
