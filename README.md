@@ -1,5 +1,5 @@
 # Passminator
-local password manager/generator writen in pure python
+local password manager/generator GUI writen in pure python
 
 - save passwords localy on your pc in text file (some people think its safer )
 - generate complex and numbers/letters only passwords
