@@ -48,6 +48,7 @@ def add_pass():
             web_entry.delete(0,tk.END)
             pass_entry.delete(0,tk.END)
             web_entry.focus()
+            
     else:
         messagebox.showerror(title='Error',message='web/email-username/password is empty please try again')
 
@@ -69,6 +70,14 @@ def show_passwords():
 
     saved_pass_window_text.config(xscrollcommand=text_scrollbar.set)
 
+def show_emailadress_entry():
+    latest_email = pass_handel.get_last_email()
+
+    if latest_email == False:
+        user_entry.insert(0,'dummy@example.com')
+    else:
+        user_entry.insert(0,latest_email)
+        
 # ---------------------------- UI SETUP ------------------------------- #
 
 #window
@@ -86,9 +95,10 @@ user_pass_option = tk.StringVar()
 user_pass_option.set('Options')
 
 
+
 #canvas
 
-image = tk.PhotoImage(file='logo1.png')
+image = tk.PhotoImage(file='logo2.png')
 canvas = tk.Canvas(window,bg=WHITE,highlightthickness=0,height=210,width=210)
 canvas.create_image(104,105,image=image)
 canvas.grid(column=1,row=0,padx=(80,0))
@@ -111,8 +121,9 @@ web_entry.focus()
 web_entry.grid(column=1,row=1,columnspan=2)
 
 user_entry = tk.Entry(width=35)
-user_entry.insert(0,'kamyab.sotudeh@gmail.com')
+#user_entry.insert(0,'dummy@example.com')
 user_entry.grid(column=1,row=2,columnspan=2)
+show_emailadress_entry()
 
 pass_entry = tk.Entry(width=18)
 pass_entry.grid(column=1,row=3,padx=(44,0))
