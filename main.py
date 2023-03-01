@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter.filedialog import asksaveasfile
 from tkinter import Scrollbar
 import brain
 
@@ -78,6 +79,18 @@ def show_emailadress_entry():
     else:
         user_entry.insert(0,latest_email)
         
+
+def save_password_file():
+
+    data = [('text file','*.txt')]
+    passfile = asksaveasfile(filetypes=data,defaultextension='.txt')
+    if passfile:
+        with open(passfile.name,'w') as file:
+            text = pass_handel.readpassword()
+            file.write(text)
+        messagebox.showinfo(title='save password file',message='your password file saved ')
+
+
 # ---------------------------- UI SETUP ------------------------------- #
 
 #window
@@ -139,6 +152,9 @@ add_button.grid(column=1,row=4,columnspan=1,padx=(40,0))
 
 show_pass_button = tk.Button(text='show saved passwords',width=36,fg=RED,command=show_passwords)
 show_pass_button.grid(column=1,row=5,columnspan=2)
+
+save_password_file_button = tk.Button(text='Save password file',width=36,fg=RED,command=save_password_file)
+save_password_file_button.grid(column=1,row=6,columnspan=2)
 
 #optionmenu
 
